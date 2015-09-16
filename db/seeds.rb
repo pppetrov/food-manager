@@ -8,9 +8,12 @@
 
 require 'csv'    
 
-csv_text = File.read('./db/initial/FD_GROUP.txt')
-
-csv = CSV.parse(csv_text, col_sep: "^")
-csv.each do |row|
-  FoodGroup.create!({id: row[0], name: row[1]})
+CSV.foreach("./db/initial/FD_GROUP.txt", col_sep: "^") do |row|
+  FoodGroup.create!(Hash[FoodGroup.column_names.zip row])
 end
+
+CSV.foreach("./db/initial/FOOD_DES.txt", col_sep: "^", quote_char:"\x00") do |row|
+  Food.create!(Hash[Food.column_names.zip row])
+end
+
+
