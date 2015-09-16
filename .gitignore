@@ -11,3 +11,7 @@
 /log/*
 !/log/.keep
 /tmp
+
+# Ignore non app related content
+
+/non-app-resources
