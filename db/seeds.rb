@@ -16,4 +16,18 @@ CSV.foreach("./db/initial/FOOD_DES.txt", col_sep: "^", quote_char:"\x00") do |ro
   Food.create!(Hash[Food.column_names.zip row])
 end
 
+CSV.foreach("./db/initial/NUTR_DEF.txt", col_sep: "^", quote_char:"\x00") do |row|
+  Nutrient.create!(Hash[Nutrient.column_names.zip row])
+end
+
+columns = Nutrition.column_names
+
+columns.shift
+
+CSV.foreach("./db/initial/NUT_DATA.txt", col_sep: "^", quote_char:"\x00") do |row|
+  puts row.to_s
+  Nutrition.create!(Hash[columns.zip row])
+end
+
+
 
