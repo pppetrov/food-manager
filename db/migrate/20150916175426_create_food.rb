@@ -1,7 +1,7 @@
 class CreateFood < ActiveRecord::Migration
   def change
     create_table :foods do |t|
-      t.references :food_group, index: true
+      t.references :food_group, index: true, foreign_key: true
       t.string :long_desc
       t.string :short_desc
       t.string :common_names

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916234559) do
+ActiveRecord::Schema.define(version: 20150918163152) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,53 @@ ActiveRecord::Schema.define(version: 20150916234559) do
   add_index "nutritions", ["food_id"], name: "reference_food_id", using: :btree
   add_index "nutritions", ["nutrient_id"], name: "index_nutritions_on_nutrient_id", using: :btree
 
+  create_table "recipe_food_joins", force: :cascade do |t|
+    t.integer "recipe_id"
+    t.integer "food_id"
+    t.integer "weight_id"
+    t.float   "amount"
+  end
+
+  add_index "recipe_food_joins", ["food_id"], name: "index_recipe_food_joins_on_food_id", using: :btree
+  add_index "recipe_food_joins", ["recipe_id"], name: "index_recipe_food_joins_on_recipe_id", using: :btree
+  add_index "recipe_food_joins", ["weight_id"], name: "index_recipe_food_joins_on_weight_id", using: :btree
+
+  create_table "recipe_nutrition_joins", force: :cascade do |t|
+    t.integer "recipe_id"
+    t.integer "nutrient_id"
+    t.float   "amount"
+  end
+
+  add_index "recipe_nutrition_joins", ["nutrient_id"], name: "index_recipe_nutrition_joins_on_nutrient_id", using: :btree
+  add_index "recipe_nutrition_joins", ["recipe_id"], name: "index_recipe_nutrition_joins_on_recipe_id", using: :btree
+
+  create_table "recipe_tag_joins", force: :cascade do |t|
+    t.integer "recipe_id"
+    t.integer "tag_id"
+  end
+
+  add_index "recipe_tag_joins", ["recipe_id"], name: "index_recipe_tag_joins_on_recipe_id", using: :btree
+  add_index "recipe_tag_joins", ["tag_id"], name: "index_recipe_tag_joins_on_tag_id", using: :btree
+
+  create_table "recipes", force: :cascade do |t|
+    t.integer "user_id"
+    t.string  "name"
+  end
+
+  add_index "recipes", ["user_id"], name: "index_recipes_on_user_id", using: :btree
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "password_digest"
+    t.string "email"
+  end
+
   create_table "weights", force: :cascade do |t|
     t.integer "food_id"
     t.integer "seq"
@@ -80,4 +127,12 @@ ActiveRecord::Schema.define(version: 20150916234559) do
 
   add_index "weights", ["food_id"], name: "index_weights_on_food_id", using: :btree
 
+  add_foreign_key "recipe_food_joins", "foods"
+  add_foreign_key "recipe_food_joins", "recipes"
+  add_foreign_key "recipe_food_joins", "weights"
+  add_foreign_key "recipe_nutrition_joins", "nutrients"
+  add_foreign_key "recipe_nutrition_joins", "recipes"
+  add_foreign_key "recipe_tag_joins", "recipes"
+  add_foreign_key "recipe_tag_joins", "tags"
+  add_foreign_key "recipes", "users"
 end
