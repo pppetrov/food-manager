@@ -20,13 +20,20 @@ CSV.foreach("./db/initial/NUTR_DEF.txt", col_sep: "^", quote_char:"\x00") do |ro
   Nutrient.create!(Hash[Nutrient.column_names.zip row])
 end
 
-columns = Nutrition.column_names
+nutrition_columns = Nutrition.column_names
 
-columns.shift
+nutrition_columns.shift
 
 CSV.foreach("./db/initial/NUT_DATA.txt", col_sep: "^", quote_char:"\x00") do |row|
-  puts row.to_s
-  Nutrition.create!(Hash[columns.zip row])
+  Nutrition.create!(Hash[nutrition_columns.zip row])
+end
+
+weights_columns = Weight.column_names
+
+weights_columns.shift
+
+CSV.foreach("./db/initial/WEIGHT.txt", col_sep: "^", quote_char:"\x00", encoding: "ISO8859-1") do |row|
+  Weight.create!(Hash[weights_columns.zip row])
 end
 
 

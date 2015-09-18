@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916193424) do
+ActiveRecord::Schema.define(version: 20150916234559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -67,5 +67,17 @@ ActiveRecord::Schema.define(version: 20150916193424) do
 
   add_index "nutritions", ["food_id"], name: "reference_food_id", using: :btree
   add_index "nutritions", ["nutrient_id"], name: "index_nutritions_on_nutrient_id", using: :btree
+
+  create_table "weights", force: :cascade do |t|
+    t.integer "food_id"
+    t.integer "seq"
+    t.integer "amount"
+    t.string  "description"
+    t.float   "gram_weight"
+    t.integer "num_data_points"
+    t.float   "std_dev"
+  end
+
+  add_index "weights", ["food_id"], name: "index_weights_on_food_id", using: :btree
 
 end
