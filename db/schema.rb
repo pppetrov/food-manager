@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918163152) do
+ActiveRecord::Schema.define(version: 20150919002341) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,14 +79,16 @@ ActiveRecord::Schema.define(version: 20150918163152) do
   add_index "recipe_food_joins", ["recipe_id"], name: "index_recipe_food_joins_on_recipe_id", using: :btree
   add_index "recipe_food_joins", ["weight_id"], name: "index_recipe_food_joins_on_weight_id", using: :btree
 
-  create_table "recipe_nutrition_joins", force: :cascade do |t|
+  create_table "recipe_nutrient_joins", force: :cascade do |t|
     t.integer "recipe_id"
     t.integer "nutrient_id"
     t.float   "amount"
+    t.integer "weight_id"
   end
 
-  add_index "recipe_nutrition_joins", ["nutrient_id"], name: "index_recipe_nutrition_joins_on_nutrient_id", using: :btree
-  add_index "recipe_nutrition_joins", ["recipe_id"], name: "index_recipe_nutrition_joins_on_recipe_id", using: :btree
+  add_index "recipe_nutrient_joins", ["nutrient_id"], name: "index_recipe_nutrient_joins_on_nutrient_id", using: :btree
+  add_index "recipe_nutrient_joins", ["recipe_id"], name: "index_recipe_nutrient_joins_on_recipe_id", using: :btree
+  add_index "recipe_nutrient_joins", ["weight_id"], name: "index_recipe_nutrient_joins_on_weight_id", using: :btree
 
   create_table "recipe_tag_joins", force: :cascade do |t|
     t.integer "recipe_id"
@@ -130,8 +132,9 @@ ActiveRecord::Schema.define(version: 20150918163152) do
   add_foreign_key "recipe_food_joins", "foods"
   add_foreign_key "recipe_food_joins", "recipes"
   add_foreign_key "recipe_food_joins", "weights"
-  add_foreign_key "recipe_nutrition_joins", "nutrients"
-  add_foreign_key "recipe_nutrition_joins", "recipes"
+  add_foreign_key "recipe_nutrient_joins", "nutrients"
+  add_foreign_key "recipe_nutrient_joins", "recipes"
+  add_foreign_key "recipe_nutrient_joins", "weights"
   add_foreign_key "recipe_tag_joins", "recipes"
   add_foreign_key "recipe_tag_joins", "tags"
   add_foreign_key "recipes", "users"
