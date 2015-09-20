@@ -1,6 +1,19 @@
 Rails.application.routes.draw do
 
-  
+  namespace :api do
+    namespace :v1 do
+      get '/foods/search' => 'foods#search', as: :search_food
+      resources :users, only: [] do
+        resources :recipe
+      end
+    end
+  end
+
+  resources :users, only: [:new, :create]
+
+  post 'users/login' => 'users#login'
+  post 'users/logout' => 'users#logout'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
