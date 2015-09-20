@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   
   namespace :api do
     namespace :v1 do
-      get '/foods/search' => 'foods#search', as: :search_food
+      post '/foods/search' => 'foods#search', as: :search_food
       resources :recipes, only: [:index, :create, :show, :update, :destroy]
     end
   end

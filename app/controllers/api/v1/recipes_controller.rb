@@ -4,7 +4,9 @@ class Api::V1::RecipesController < ApplicationController
   respond_to :html, :json
   
   def index
-    @recipes = Recipe.all
+    if @current_user
+        @recipes = @current_user.recipes
+    end
   end
 
   def show

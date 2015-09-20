@@ -22,9 +22,11 @@
                 <% end %>
 
             </header>
-        <%= yield %>
+            <div id="container">
+                <%= yield %>
 
-        <%= yield :app %>
+                <%= yield :app %>
+            </div>
         </div>        
     </body>
 </html>

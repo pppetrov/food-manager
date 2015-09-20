@@ -5,5 +5,9 @@ class Food < ActiveRecord::Base
   has_many :weights
 
   include PgSearch
-  pg_search_scope :search_by_desc, :against => [:short_desc, :long_desc]
+  pg_search_scope :search_by_desc, :against => [:short_desc, :long_desc], :using => {
+      :tsearch => {:prefix => true}
+    } 
+  
 end
+

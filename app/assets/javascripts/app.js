@@ -3,8 +3,10 @@ var App = {
     Collections: {},
     Views: {},
     Routers: {},
+    
     initialize: function(data) {
-        // new App.Routers.Recipes(); 
-        // Backbone.history.start();
+        this.recipes = new App.Collections.Recipes(data.recipes);
+        this.router = new App.Routers.Recipes({collection: this.recipes}); 
+        Backbone.history.start();
     }
 };
