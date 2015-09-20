@@ -1,6 +1,10 @@
 class Api::V1::RecipesController < ApplicationController
-
+  before_filter :authorize
+  
+  respond_to :html, :json
+  
   def index
+    @recipes = Recipe.all
   end
 
   def show

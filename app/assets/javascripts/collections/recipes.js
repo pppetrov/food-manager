@@ -1,4 +1,4 @@
-var Recipes = Backbone.Collection.extend({
-    model: Recipe,
-    url: '/api/v1/users/1/recipes'
+App.Collections.Recipes = Backbone.Collection.extend({
+    model: App.Models.Recipe,
+    url: '/api/v1/recipes'
 });

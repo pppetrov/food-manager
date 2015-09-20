@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>FoodManager</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+    <head>
+        <title>FoodManager</title>
+        <%= stylesheet_link_tag    'application', media: 'all' %>
+        <%= javascript_include_tag 'application'%>
+        <%= csrf_meta_tags %>
+    </head>
+    <body>
+        <div id="contents">
+            <header>
+                <% flash.each do |key, value| -%>
+                    <div class="flash <%= key %>"><%= value %></div>
+                <% end -%>
 
-<%= yield %>
+                <% if @current_user %>
+                    <%= @current_user.email %>
+                    <%= link_to "Sign out", users_logout_path %>
+                <% else %>
+                    <%= link_to "Sign in", users_login_path%>
+                    <%= link_to "Sign up", new_user_path %>
+                <% end %>
 
-</body>
+            </header>
+        <%= yield %>
+
+        <%= yield :app %>
+        </div>        
+    </body>
 </html>

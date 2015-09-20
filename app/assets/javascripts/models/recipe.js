@@ -1,1 +1,1 @@
-var Recipe = Backbone.Model.extend({});
+App.Models.Recipe = Backbone.Model.extend({});
