@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150919002341) do
+ActiveRecord::Schema.define(version: 20150921211555) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 20150919002341) do
   create_table "recipe_nutrient_joins", force: :cascade do |t|
     t.integer "recipe_id"
     t.integer "nutrient_id"
-    t.float   "amount"
+    t.float   "amount",      default: 0.0
     t.integer "weight_id"
   end
 

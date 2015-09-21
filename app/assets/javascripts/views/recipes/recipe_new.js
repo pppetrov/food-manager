@@ -51,7 +51,20 @@ App.Views.RecipeNew = Backbone.View.extend({
         $("#query").val("");
     },
 
-    create: function() {
-        debugger
+    create: function(event) {
+        event.preventDefault();
+        var food_joins = _.map($("li"), function(el){
+            return {
+                food_id: el.id,
+                weight_id: $(".weights", el).val(),
+                amount: $(".food", el).val()
+            };
+        });
+        var newRecipe = new App.Models.Recipe({
+            name: $("input[name='name']").val(),
+            recipe_food_joins: food_joins
+        });
+        
+        newRecipe.save();
     }
 });
