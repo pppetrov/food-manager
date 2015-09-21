@@ -7,7 +7,11 @@ class Food < ActiveRecord::Base
   include PgSearch
   pg_search_scope :search_by_desc, :against => [:short_desc, :long_desc], :using => {
       :tsearch => {:prefix => true}
-    } 
+                  }
+
+  def as_json(options={})
+    super(:only => [:id, :long_desc])
+  end
   
 end
 

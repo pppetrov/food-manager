@@ -3,7 +3,7 @@ class Api::V1::FoodsController < ApplicationController
   
   def search
     @matches = Food.search_by_desc(params[:query]).limit(10);
-    render json: @matches
+    render json: @matches.as_json()
   end
-  
+
 end

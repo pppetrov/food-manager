@@ -4,7 +4,9 @@ App.Views.RecipeNew = Backbone.View.extend({
 
     events: {
         "click .back": "clear",
-        "keyup": "suggest"
+        "keyup": "suggest",
+        "click #add": "add",
+        "click #create": "create"
     },
 
     initialize: function(options) {
@@ -29,14 +31,27 @@ App.Views.RecipeNew = Backbone.View.extend({
             success: function(data) {
                 $("#foods").empty();
                 data.forEach(function(e) {
-                    var $sugg = $("<option>",{value: e.long_desc});
+                    var $sugg = $("<option>",{value: e.long_desc, data_id: e.id});
                     $("#foods").append($sugg);
                 });
             },
 
             failiure: function() {
-
             }
         });
+    },
+
+    add: function(event){
+        event.preventDefault();
+        var val = $("#query").val();
+        var match = _.findWhere($("option"), {value: val});
+        var name = $(match).attr("value");
+        var id = parseInt($(match).attr("data_id"));
+        new App.Views.FoodNew({id: id, name: name});
+        $("#query").val("");
+    },
+
+    create: function() {
+        debugger
     }
 });

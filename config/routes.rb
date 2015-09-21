@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/foods/search' => 'foods#search', as: :search_food
       resources :recipes, only: [:index, :create, :show, :update, :destroy]
+      resources :foods, only: [] do
+        resources :weights, only: [:index]
+      end
     end
   end
 

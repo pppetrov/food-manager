@@ -1,12 +1,21 @@
+<h2>New Recipe</h2>
+
+<input type="text" placeholder="Recipe Name" name="name">
 
 <div id="foods-input">
+    <h4>Ingredients</h4>
+    <ul class="selected-foods">
+
+    </ul>
 </div>
 
-<form id="search-form">
+<div id="new-food">
     <input list="foods" placeholder="Search For Ingredients" id="query" autocomplete="off">
     <datalist id="foods">
     </datalist>
-    <input type="submit" value="Add">
-</form>
+    <input type="button" value="Add" id="add">
+</div>
 
+<input type="Submit" value="Create Recipe" id="create">
+    
 <a href="#" class="back">Go Back</a>
