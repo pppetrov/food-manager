@@ -1,7 +1,15 @@
-    <span><%= name %></span>
-    <input type="text" placeholder="amount" class="food">
-    <select class="weights">
-        <% weights.forEach(function(weight) { %>
-            <option value="<%=weight.id%>"><%=weight.description%></option>
-        <% }); %>
-    </select>
+<div class="row">
+    <div class="five columns">
+    <%= name %>
+    </div>
+    <div class="three columns">
+        <input type="text" placeholder="amount" class="food">
+    </div>
+    <div class="three columns">
+        <select class="weights">
+            <% weights.forEach(function(weight) { %>
+                <option value="<%=weight.id%>"><%=weight.description%></option>
+            <% }); %>
+        </select>
+    </div>
+</div>
