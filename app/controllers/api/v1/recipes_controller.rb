@@ -27,7 +27,8 @@ class Api::V1::RecipesController < ApplicationController
         entry.update_attribute(:amount, entry.amount + currentAmount)
       end
     end
-
+    
+    render nothing: true
 
   end
 

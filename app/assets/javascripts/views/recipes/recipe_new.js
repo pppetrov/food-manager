@@ -70,7 +70,7 @@ App.Views.RecipeNew = Backbone.View.extend({
         });
         
         newRecipe.save();
-        this.collection.add(newRecipe);
+        this.collection.fetch();
         App.router.navigate("", true);
     }
 });

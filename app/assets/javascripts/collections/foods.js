@@ -1,4 +1,7 @@
 App.Collections.Foods = Backbone.Collection.extend({
     model: App.Models.Food,
-    url: '/api/v1/foods'
+
+    initialize: function(options) {
+        this.url = options.url;
+    }
 });

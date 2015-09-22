@@ -5,9 +5,12 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       post '/foods/search' => 'foods#search', as: :search_food
-      resources :recipes, only: [:index, :create, :show, :update, :destroy]
       resources :foods, only: [] do
         resources :weights, only: [:index]
+      end
+      resources :recipes, only: [:index, :create, :show] do
+        resources :foods, only: [:index, :show]
+        resources :nutrients, only: [:index, :show]
       end
     end
   end

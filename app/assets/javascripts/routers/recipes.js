@@ -20,6 +20,5 @@ App.Routers.Recipes = Backbone.Router.extend({
     },
 
     show: function(id) {
-        var view = new App.Views.Show({model: this.collections.get(id)});
     }
 });
