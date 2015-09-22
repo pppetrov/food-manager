@@ -6,10 +6,10 @@ App.Views.RecipeShow = Backbone.View.extend({
 
     initialize: function() {
         this.render();
-        this.model.fetchFoods();
-        this.model.fetchNutrients();
-        var foodsView = new App.Views.Foods({collection: this.model.foods});
-        var nutrientsView = new App.Views.Nutrients({collection: this.model.nutrients});
+        // this.model.fetchFoods();
+        // this.model.fetchNutrients();
+        var foodsView = new App.Views.Foods({collection: this.model.foods()});
+        var nutrientsView = new App.Views.Nutrients({collection: this.model.nutrients()});
     },
 
     render: function() {

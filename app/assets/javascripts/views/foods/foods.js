@@ -1,12 +1,13 @@
 App.Views.Foods = Backbone.View.extend({
     id: 'foods',
 
-    initialize: function() {
+    initialize: function(options) {
+        this.collection = options.collection;
         this.render();
         this.listenTo(this.collection, "add", this.add);
-        _.each(this.collection.models, function(food) {
-            this.add(food);
-        }.bind(this));
+        // _.each(this.collection.models, function(food) {
+        //     this.add(food);
+        // }.bind(this));
     },
 
     render: function() {
