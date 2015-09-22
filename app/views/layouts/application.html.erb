@@ -8,6 +8,7 @@
         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
     </head>
     <body>
+        <div class="container">
         <header>
             <div id="user-controls">
                  <% flash.each do |key, value| -%>
@@ -29,5 +30,6 @@
         <%= yield :app %>
         <div id="container">
         </div>
+        <div class="container">
     </body>
 </html>
