@@ -5,21 +5,22 @@
         <%= stylesheet_link_tag    'application', media: 'all' %>
         <%= javascript_include_tag 'application'%>
         <%= csrf_meta_tags %>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
     </head>
     <body>
         <header>
-            <div id="user-controls"
+            <div id="user-controls">
                  <% flash.each do |key, value| -%>
                 <div class="flash <%= key %>"><%= value %></div>
                  <% end -%>
 
-                 <% if @current_user %>
+                 <% if @current_user -%>
                      <%= @current_user.email %>
                      <%= link_to "Sign out", users_logout_path %>
-                 <% else %>
-                     <%= link_to "Sign in", users_login_path%>
+                 <% else -%>
+                     <%= link_to "Sign in", users_login_path %>
                      <%= link_to "Sign up", new_user_path %>
-                 <% end %>
+                 <% end -%>
             </div>
         </header>
         
