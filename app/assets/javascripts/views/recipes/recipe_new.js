@@ -71,10 +71,11 @@ App.Views.RecipeNew = Backbone.View.extend({
         
         newRecipe.save(null, {
             success: function() {
-                this.collection.add(newRecipe);                
+                this.collection.add(newRecipe);
+                App.router.navigate("", {trigger: true});
             }.bind(this)
         });
 
-        App.router.navigate("", true);
+
     }
 });
