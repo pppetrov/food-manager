@@ -21,7 +21,7 @@ class Api::V1::RecipesController < ApplicationController
     end
     
     RecipeFoodJoin.where(recipe_id: id).each do |food|
-      grams = Weight.find(food.weight_id).gram_weight * food.amount
+      grams = Weight.find(food.weight_id).gram_weight /  Weight.find(food.weight_id).amount * food.amount
       Nutrition.where(food_id: food.food_id).each do |nutrition|
         currentAmount = nutrition.amount * grams / 100
         entry = RecipeNutrientJoin.find_or_create_by(recipe_id: id, nutrient_id: nutrition.nutrient_id);
