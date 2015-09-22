@@ -3,6 +3,5 @@ App.Collections.Foods = Backbone.Collection.extend({
 
     initialize: function(options) {
         this.url = options.url;
-        this.fetch();
     }
 });

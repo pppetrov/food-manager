@@ -2,14 +2,15 @@ App.Views.Foods = Backbone.View.extend({
     id: 'foods',
 
     initialize: function(options) {
-        this.collection = options.collection;
+        // this.collection = options.collection;
         this.render();
         this.listenTo(this.collection, "add", this.add);
         // _.each(this.collection.models, function(food) {
         //     this.add(food);
         // }.bind(this));
+        this.collection.fetch();
     },
-
+    
     render: function() {
         this.$el.html(JST['foods/foods']());
         var $parent = $(".recipe");

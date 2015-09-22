@@ -2,7 +2,7 @@ App.Views.Nutrients = Backbone.View.extend({
     id: 'nutrients',
 
     initialize: function(options) {
-        this.collection = options.collection;
+        // this.collection = options.collection;
         this.render();
         this.listenTo(this.collection, "add", this.add);
         // _.each(this.collection.models, function(nutrient) {
