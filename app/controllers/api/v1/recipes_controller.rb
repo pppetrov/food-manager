@@ -1,10 +1,9 @@
 class Api::V1::RecipesController < ApplicationController
-  before_filter :authorize
   
   respond_to :html, :json
   
   def index
-    @recipes = Recipe.all
+    @recipes = @current_user.recipes
   end
 
   def show
@@ -12,7 +11,9 @@ class Api::V1::RecipesController < ApplicationController
   end
 
   def create
-    recipe = Recipe.create(recipe_params)
+    recipe = Recipe.new(recipe_params)
+    recipe.user_id = @current_user.id
+    recipe.save
     id = recipe.id
     params[:recipe_food_joins].each do |join|
       join[:recipe_id] = id
@@ -27,18 +28,7 @@ class Api::V1::RecipesController < ApplicationController
         entry.update_attribute(:amount, entry.amount + currentAmount)
       end
     end
-    
-    render nothing: true
-
-  end
-
-  def update
-  end
-
-  def destroy
-  end
-
-  def new
+    render json: recipe.as_json(only: [:id, :name])
   end
 
   private

@@ -69,8 +69,13 @@ App.Views.RecipeNew = Backbone.View.extend({
             recipe_food_joins: food_joins
         });
         
-        newRecipe.save();
-        this.collection.fetch();
+        newRecipe.save(null, {
+            success: function() {
+                console.log("success");
+                this.collection.add(newRecipe);                
+            }.bind(this)
+        });
+
         App.router.navigate("", true);
     }
 });
