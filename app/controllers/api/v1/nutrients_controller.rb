@@ -11,7 +11,7 @@ class Api::V1::NutrientsController < ApplicationController
       entry[:amount] = join.amount
       response.push(entry)
     end
-    binding.pry
+    # binding.pry
     render json: response
   end
 
