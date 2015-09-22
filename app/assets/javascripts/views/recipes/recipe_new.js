@@ -71,7 +71,6 @@ App.Views.RecipeNew = Backbone.View.extend({
         
         newRecipe.save(null, {
             success: function() {
-                console.log("success");
                 this.collection.add(newRecipe);                
             }.bind(this)
         });
