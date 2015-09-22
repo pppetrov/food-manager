@@ -1,4 +1,5 @@
 App.Views.RecipeNew = Backbone.View.extend({
+
     tagName: 'form',
     id: 'new-recipe',
 
@@ -10,12 +11,15 @@ App.Views.RecipeNew = Backbone.View.extend({
     },
 
     initialize: function(options) {
+        this.collection = options.collection;
         this.render();
     },
 
     render: function() {
         this.$el.html(JST['recipes/new']());
-        $("#recipes").prepend(this.$el);
+        var $parent = $("#container");
+        $parent.empty();
+        $parent.append(this.$el);
     },
 
     clear: function() {
@@ -66,5 +70,7 @@ App.Views.RecipeNew = Backbone.View.extend({
         });
         
         newRecipe.save();
+        this.collection.add(newRecipe);
+        App.router.navigate("", true);
     }
 });

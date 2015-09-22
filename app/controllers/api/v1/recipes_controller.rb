@@ -4,12 +4,11 @@ class Api::V1::RecipesController < ApplicationController
   respond_to :html, :json
   
   def index
-    if @current_user
-        @recipes = @current_user.recipes
-    end
+    @recipes = Recipe.all
   end
 
   def show
+    @recipe = Recipe.find(params[:id])
   end
 
   def create
@@ -18,7 +17,6 @@ class Api::V1::RecipesController < ApplicationController
     params[:recipe_food_joins].each do |join|
       join[:recipe_id] = id
       RecipeFoodJoin.create(join.permit(:food_id, :weight_id, :amount, :recipe_id))
-      binding.pry
     end
     
     RecipeFoodJoin.where(recipe_id: id).each do |food|

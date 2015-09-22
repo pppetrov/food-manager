@@ -1,16 +1,16 @@
-<h1>Recipes</h1>
+<script type="text/json" id="bootstrap">
+  {
+    "recipes": <%= @recipes.to_json(only: [:id, :name]).html_safe %>
+  }
+</script>
+
 
 <div id="recipes"></div>
-
-<script type="text/json" id="bootstrap">
- {"recipes": <%= @recipes.to_json %>}
-</script>
 
 <%= content_for :app do -%>
     <script type="text/javascript">
      $(function () {
-         var data = JSON.parse($("#bootstrap").text());
-         App.initialize(data);
+         App.initialize(JSON.parse($("#bootstrap").html()));
      });
   </script>
 <% end %>

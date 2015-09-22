@@ -1,21 +1,8 @@
 App.Routers.Recipes = Backbone.Router.extend({
 
     initialize: function(options) {
-        
-        this.el = $("#recipes");
+        this.el = $("#container");
         this.collection = options.collection;
-
-        // $("#container").on('click', 'a:not([data-bypass])', function (evt) {
-
-        //     var href = $(this).attr('href');
-        //     var protocol = this.protocol + '//';
-
-        //     if (href.slice(protocol.length) !== protocol) {
-        //         evt.preventDefault();
-        //         App.router.navigate(href, true);
-        //     }
-        // });
-        
     },
 
     routes: {
@@ -29,10 +16,10 @@ App.Routers.Recipes = Backbone.Router.extend({
     },
 
     newRecipe: function() {
-        var view = new App.Views.RecipeNew();
+        var view = new App.Views.RecipeNew({collection: this.collection});
     },
 
     show: function(id) {
-        
+        var view = new App.Views.Show({model: this.collections.get(id)});
     }
 });
