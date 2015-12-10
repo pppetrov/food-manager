@@ -27,6 +27,20 @@ App.Views.RecipeNew = Backbone.View.extend({
     },
 
     suggest: function(el) {
+        var entityMap = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': '&quot;',
+            "'": '&#39;',
+            "/": '&#x2F;'
+        };
+
+        function escapeHtml(string) {
+            return String(string).replace(/[&<>"'\/]/g, function (s) {
+                return entityMap[s];
+            });
+        }
         $.ajax({
             method: "POST",
             url: "/api/v1/foods/search",
@@ -35,7 +49,7 @@ App.Views.RecipeNew = Backbone.View.extend({
             success: function(data) {
                 $("#foods").empty();
                 data.forEach(function(e) {
-                    var $sugg = $("<option>",{value: e.long_desc, data_id: e.id});
+                    var $sugg = $("<option>",{value: escapeHtml(e.long_desc), data_id: e.id});
                     $("#foods").append($sugg);
                 });
             },
