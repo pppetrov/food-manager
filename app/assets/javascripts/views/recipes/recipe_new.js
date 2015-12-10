@@ -49,7 +49,7 @@ App.Views.RecipeNew = Backbone.View.extend({
             success: function(data) {
                 $("#foods").empty();
                 data.forEach(function(e) {
-                    var $sugg = $("<option>",{value: escapeHtml(e.long_desc), data_id: e.id});
+                    var $sugg = $("<option>",{value: escapeHtml(e.long_desc).substring(0, 20), data_id: e.id});
                     $("#foods").append($sugg);
                 });
             },
