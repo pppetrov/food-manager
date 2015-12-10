@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize
-    current_user
+    current_user = 1
   end
 
   private

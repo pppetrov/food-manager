@@ -3,6 +3,7 @@ class Api::V1::RecipesController < ApplicationController
   respond_to :html, :json
   
   def index
+    @current_user = User.find(1);
     @recipes = @current_user.recipes
   end
 
